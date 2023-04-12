@@ -1,9 +1,9 @@
 import React from 'react'
-import Header from '../header/Header'
+// import Header from '../header/Header'
 const History = () => {
   return (
     <div>
-        <Header/>
+        {/* <Header/> */}
         History</div>
   )
 }

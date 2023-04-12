@@ -36,7 +36,7 @@ const Header = () => {
     setIsClicked(!isClicked);
   }
   return (
-    <div className='d-block position-relative'>
+    <div className='position-relative'>
     <div className='container-fluid position-sticky sticky-top headerrr'>
     <div className='header '>
     <RxHamburgerMenu onClick={handleClick} className='burger'/>
@@ -56,7 +56,7 @@ const Header = () => {
     </div>
     
     
-    <section className='sec_wrap d-flex flex-wrap'>
+    <section className='sec_wrap d-flex'>
     <div className=' left_footer'>
     <NavLink className='activee' to={'/Home'}>
     <div className={isClicked ? 'f_icons' : 'newww'}>

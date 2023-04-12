@@ -2,27 +2,30 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ResultVideo from './ResultVideo';
 import './result.scss'
+
 const Fatch = () => {
   const [data, setData] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);
-  const api_key = "a1584dadf7msh7a7980264c9fbebp10cf0cjsn7e1b6d668e9a"
-  const options = {
-    method: 'GET',
-    url: 'https://youtube-v31.p.rapidapi.com/search',
-    params: {
-      q: 'music',
-      part: 'snippet,id',
-      regionCode: 'US',
-      maxResults: '50',
-      order: 'date',
-    },
-    headers: {
-      'X-RapidAPI-Key': api_key,
-      'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com',
-    },
-  };
+  const [searchQuery, setSearchQuery] = useState('');
+  const api_key = "ac358f5e4cmsh8bfc9db66eabe38p1000b8jsn6e8012194e26"
 
   useEffect(() => {
+    const options = {
+      method: 'GET',
+      url: 'https://youtube-v31.p.rapidapi.com/search',
+      params: {
+        q: searchQuery,
+        part: 'snippet,id',
+        regionCode: 'US',
+        maxResults: '50',
+        order: 'date',
+      },
+      headers: {
+        'X-RapidAPI-Key': api_key,
+        'X-RapidAPI-Host': 'youtube-v31.p.rapidapi.com',
+      },
+    };
+
     axios
       .request(options)
       .then(function (response) {
@@ -31,41 +34,47 @@ const Fatch = () => {
       .catch(function (error) {
         console.error(error);
       });
-  }, [options]);
+  }, [searchQuery]);
 
   const handleVideoSelect = (videoId) => {
     setSelectedVideo(videoId);
   };
 
+  const handleInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
   return (
     <div>
+      
+      <input type="text" placeholder="Search for videos" onChange={handleInputChange} />
+      
       {selectedVideo && <ResultVideo videoId={selectedVideo} />}
-    <div>
-      {data.items &&
-        data.items.map((item) => {
-          const videoId = item.id.videoId;
-          const thumbnailUrl = item.snippet.thumbnails.default.url;
-          const title = item.snippet.title;
-          return (
-            <div className='d-flex flex-wrap align-align-items-center justify-content-center' key={videoId}>
-              <div className='card_video card'>
-              <img
-                className='card-img-top' 
-                src={thumbnailUrl}
-                alt={title}
-                onClick={() => handleVideoSelect(videoId)}
+      <div className='d-flex flex-wrap align-align-items-center justify-content-center'>
+        {data.items &&
+          data.items.map((item) => {
+            const videoId = item.id.videoId;
+            const thumbnailUrl = item.snippet.thumbnails.default.url;
+            const title = item.snippet.title;
+            return (
+              <div className='card_video card' key={videoId}>
+                <img
+                  className='card-img-top'
+                  src={thumbnailUrl}
+                  alt={title}
+                  onClick={() => handleVideoSelect(videoId)}
                 />
-              <h3 className='card-title'>{title}</h3>
-              </div>  
-            </div>
-          );
-        })}
-    </div>
+                <h3 className='card-title'>{title}</h3>
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 };
 
 export default Fatch;
+
 
 
 

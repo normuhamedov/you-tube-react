@@ -1,9 +1,9 @@
 import React from 'react'
-import Header from '../header/Header'
+// import Header from '../header/Header'
 const Music = () => {
   return (
     <div>
-        <Header/>
+        {/* <Header/> */}
         Music</div>
   )
 }

@@ -1,9 +1,9 @@
 import React from 'react'
-import Header from '../header/Header'
+// import Header from '../header/Header'
 const Game = () => {
   return (
     <div>
-        <Header/>
+        {/* <Header/> */}
 
         <h1>Games</h1>
     </div>
