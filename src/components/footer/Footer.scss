@@ -1,0 +1,31 @@
+
+.f_icons h5{
+    margin-left: 13px;
+    
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    /* identical to box height */
+    
+    
+    color: #898989;
+    margin-bottom: 28px;
+}
+.f_icons:hover {
+    color: #FF0000;
+}
+.f_icons h5:hover {
+    color: #FF0000;
+}
+.f_icons:active {
+    color: #FF0000;
+}
+.f_icons h5:active {
+    color: #FF0000;
+}
+
+.f_icons {
+    max-width: 134px;
+    display: flex;
+}
